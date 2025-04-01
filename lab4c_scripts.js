@@ -87,8 +87,34 @@ function find_student() {
     }
 }
 
+function display_list() {
+    let displayDiv = document.getElementById("displayAllBtn");
+    
+    if (students.length === 0) {
+        displayDiv.innerHTML = "<p>No students available.</p>";
+        return;
+    }
+
+    let studentList = "<h2>All Students</h2>";
+    students.forEach(student => {
+        studentList += `
+            <p>
+                <strong>Student Number:</strong> ${student.studentNum} <br>
+                <strong>Name:</strong> ${student.name} <br>
+                <strong>Age:</strong> ${student.age} <br>
+                <strong>Email:</strong> ${student.email} <br>
+                <strong>Course:</strong> ${student.course} <br>
+            </p>
+            <hr>
+        `;
+    });
+
+    displayDiv.innerHTML = studentList;
+}
+
 window.onload = function() {
     document.getElementById("dateBtn").addEventListener("click", time_now);
     document.getElementById("submitBtn").addEventListener("click", add_student);
     document.getElementById("searchBtn").addEventListener("click", find_student);
+    document.getElementById("displayAllBtn").addEventListener("click", display_list);
 };
