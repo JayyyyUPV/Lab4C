@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="lab4c_styles.css"></link>
+    </head>
+    <body>
+        <button id="dateBtn">Show Current Date</button>
+        <p id="displayDate"></p>
+
+        <h1>Add Student</h1>
+        <form id="studentForm">
+            <input type="hidden" id="studentNumber">
+
+            <label>Name:</label><br>
+            <input type="text" id="name"><br><br>
+
+            <label>Age:</labeL><br>
+            <input type="number" id="age"><br><br>
+
+            <label>UP Mail:</label><br>
+            <input type="email" id="email"><br><br>
+            
+            <label>Course:</label><br>
+            <select id="course">
+                <option value="BS Computer Science">BS Computer Science</option>
+                <option value="BS Fisheries">BS Fisheries</option>
+                <option value="BA Political Science">BA Political Science</option>
+                <option value="BS Public Health">BS Public Health</option>
+                <option value="BS Biology">BS Biology</option>
+            </select><br><br><br>
+
+            <button type="button" id="submitBtn">Submit</button>
+        </form>
+
+        <div id="search_student">
+            <h2>Search Student</h2>
+            <label>Search Student Number:</label><br>
+            <input type="text" id="searchID" placeholder="Enter Student Number"><br>
+            <button id="searchBtn" onclick="find_student()">Search</button>
+            <p id="displayStudent"></p>
+        </div>
+
+        <script src="lab4c_scripts.js"></script>
+    </body>
+</html>
