@@ -28,6 +28,16 @@ input {
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+button {
+    margin: 10px;
+    width: 205px;
+    height: 30px;
+    font-size: 15px;
+}
+
+>>>>>>> 888a08a5a6b9f8cd12c4e4760a64e4889b02e391
 #course {
     margin-top: 15px;
     width: 255px;
@@ -36,6 +46,7 @@ input {
     text-align: center;
 }
 
+<<<<<<< HEAD
 #submitBtn {
     margin: 10px;
     width: 205px;
@@ -43,6 +54,8 @@ input {
     font-size: 15px;
 }
 
+=======
+>>>>>>> 888a08a5a6b9f8cd12c4e4760a64e4889b02e391
 #search_student {
     margin: 50px;
 }
@@ -52,9 +65,14 @@ input {
     height: 30px;
 }
 
+<<<<<<< HEAD
 #searchBtn {
     margin: 10px;
     width: 205px;
     height: 30px;
     font-size: 15px;
 }
+=======
+
+
+>>>>>>> 888a08a5a6b9f8cd12c4e4760a64e4889b02e391
