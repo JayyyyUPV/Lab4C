@@ -91,7 +91,7 @@ function display_list() {
     let displayDiv = document.getElementById("displayAllBtn");
     
     if (students.length === 0) {
-        displayDiv.innerHTML = "<p>No students available.</p>";
+        document.getElementById("displayAllStudents").innerHTML = "No students available.";
         return;
     }
 
@@ -109,7 +109,7 @@ function display_list() {
         `;
     });
 
-    displayDiv.innerHTML = studentList;
+    document.getElementById("displayAllStudents").innerHTML = studentList;
 }
 
 window.onload = function() {
