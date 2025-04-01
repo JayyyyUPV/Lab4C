@@ -88,7 +88,7 @@ function find_student() {
 }
 
 window.onload = function() {
-    document.getElementById("dateBtn").addEventListener("click", currentDate);
+    document.getElementById("dateBtn").addEventListener("click", time_now);
     document.getElementById("submitBtn").addEventListener("click", add_student);
     document.getElementById("searchBtn").addEventListener("click", find_student);
 };
