@@ -1,5 +1,6 @@
 let students = [];
 
+
 function time_now() {
     let date = new Date();
 
@@ -17,32 +18,48 @@ function time_now() {
     document.getElementById("displayDate").innerHTML = `Today is ${month} ${day}, ${year}, ${weekday}. <br>The current time is ${time}.`;
 }
 
+
 function generateStudentNumber() {
-    return "2024" + Math.floor(10000 + Math.random() * 90000)
+    let studentNum; 
+    do {
+        studentNum = "2024" + Math.floor(10000 + Math.random() * 90000);
+    } while (students.some(student => student.studentNum === studentNum)); 
+    return studentNum;
 }
+
 
 function validateStudent(name, age, email) {
-    if (name.length <= 5 && !name.includes(" ")) {
-        alert("Please enter a full name (first name and last name)");
-        return false;
+    let isValid = true;
+
+    if (name.length <= 5 || !name.includes(" ")) {
+        document.getElementById("errorName").innerHTML = "Name should be more than 5 characters and contain a space (First and Last name)";
+        isValid = false;
+    } else {
+        document.getElementById("errorName").innerHTML = "";
     }
 
-    if (isNaN(age) || age < 18 || age > 99 ) {
-        alert("Age must be a number between 18 and 99");
-        return false;
+    age = Number(age);
+    if (isNaN(age) || age < 18 || age > 99) {
+        document.getElementById("errorNumber").innerHTML = "Age must be a number between 18 and 99";
+        isValid = false;
+    } else {
+        document.getElementById("errorNumber").innerHTML = "";
     }
 
-    if (!email.includes("@")) {
-        alert("Please include an '@' in the email address.");
-        return false;
+    if (!email.endsWith("@up.edu.ph") || email.indexOf("@up.edu.ph") === 0) {
+        document.getElementById("errorEmail").innerHTML = "Email must be a valid '@up.edu.ph' email";
+        isValid = false;
+    } else {
+        document.getElementById("errorEmail").innerHTML = "";
     }
 
-    return true;
+    return isValid;
 }
 
+
 function add_student() {
-    let studentNum = generateStudentNumber();
-    document.getElementById("studentNumber").value = studentNum;
+    let studentNum = generateStudentNumber(); 
+    document.getElementById("studentNumber").value = studentNum; 
 
     let name = document.getElementById("name").value.trim();
     let age = document.getElementById("age").value.trim();
@@ -59,13 +76,17 @@ function add_student() {
         course: course
     };
 
-    students.push(newStudent);
+    students.push(newStudent); 
     console.log(students);
 
+
+    document.getElementById("errorName").innerHTML = "";
+    document.getElementById("errorNumber").innerHTML = "";
+    document.getElementById("errorEmail").innerHTML = "";
+
     alert(`Student added successfully!\n Student Number: ${studentNum}\n Name: ${name}\n Age: ${age}\n Email: ${email}\n Course: ${course}`);
-    
+
     document.getElementById("studentForm").reset();
-    document.getElementById("studentNumber").value = generateStudentNumber();
 }
 
 function find_student() {
@@ -88,8 +109,6 @@ function find_student() {
 }
 
 function display_list() {
-    let displayDiv = document.getElementById("displayAllBtn");
-    
     if (students.length === 0) {
         document.getElementById("displayAllStudents").innerHTML = "No students available.";
         return;
@@ -114,7 +133,18 @@ function display_list() {
 
 window.onload = function() {
     document.getElementById("dateBtn").addEventListener("click", time_now);
-    document.getElementById("submitBtn").addEventListener("click", add_student);
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent the form from submitting until validation is passed
+
+        let name = document.getElementById("name").value.trim();
+        let age = document.getElementById("age").value.trim();
+        let email = document.getElementById("email").value.trim();
+
+        if (validateStudent(name, age, email)) {  // Validate all fields
+            add_student();  // Only call add_student if validation passes
+        }
+    });
+
     document.getElementById("searchBtn").addEventListener("click", find_student);
     document.getElementById("displayAllBtn").addEventListener("click", display_list);
 };
